@@ -268,7 +268,7 @@ export default {
                 </div>
               </div>
               <div
-                class="d-flex flex-column flex-md-row justify-content-between mb-5"
+                class="d-flex flex-column flex-md-row justify-content-between"
               >
                 <div class="flex-grow-1">
                   <h3 class="mb-0">Software Developer</h3>
