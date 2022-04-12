@@ -1,4 +1,9 @@
 <script>
+import imgUrl1 from "/img/F1-1.png";
+import imgUrl2 from "/img/C1-1.png";
+import imgUrl3 from "/img/E1-1.png";
+import imgUrl4 from "/img/E2-1.png";
+import gifUrl from "/dashboard.gif";
 export default {
   data() {
     return {
@@ -7,12 +12,8 @@ export default {
       reRender: 0,
       offsets: [],
       touchStartY: 0,
-      images: [
-        "/img/F1-1.png",
-        "/img/C1-1.png",
-        "/img/E1-1.png",
-        "/img/E2-1.png",
-      ],
+      gifUrl,
+      images: [imgUrl1, imgUrl2, imgUrl3, imgUrl4],
     };
   },
   methods: {
@@ -222,7 +223,7 @@ export default {
                 :key="reRender"
                 width="100%"
                 style="height: 80%; width: 80%; position: relative; z-index: -1"
-                :src="'/dashboard.gif?' + Date.now()"
+                :src="gifUrl + '?' + Date.now()"
                 alt="Dashboard"
               />
             </div>
