@@ -9,7 +9,6 @@ export default {
     return {
       inMove: false,
       activeSection: 0,
-      reRender: 0,
       offsets: [],
       touchStartY: 0,
       gifUrl,
@@ -49,7 +48,6 @@ export default {
     moveDown() {
       this.inMove = true;
       this.activeSection--;
-      this.reRender++;
 
       if (this.activeSection < 0) this.activeSection = 0;
 
@@ -58,7 +56,6 @@ export default {
     moveUp() {
       this.inMove = true;
       this.activeSection++;
-      this.reRender++;
 
       if (this.activeSection > this.offsets.length - 1)
         this.activeSection = this.offsets.length - 1;
@@ -220,7 +217,6 @@ export default {
           <div class="row align-items-center">
             <div class="col-xl-8 d-none d-xxl-block mb-5">
               <img
-                :key="reRender"
                 width="100%"
                 style="height: 80%; width: 80%; position: relative; z-index: -1"
                 :src="gifUrl + '?' + Date.now()"
