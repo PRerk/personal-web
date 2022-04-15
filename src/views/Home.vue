@@ -219,7 +219,7 @@ export default {
               <img
                 width="100%"
                 style="height: 80%; width: 80%; position: relative; z-index: -1"
-                :src="gifUrl + '?' + String(Date.now()).slice(0, -3)"
+                :src="gifUrl + '?' + String(Date.now()).slice(0, -4)"
                 alt="Dashboard"
               />
             </div>
