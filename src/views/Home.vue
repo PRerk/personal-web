@@ -1,8 +1,6 @@
 <script>
 import imgUrl1 from "/img/F1-1.png";
 import imgUrl2 from "/img/C1-1.png";
-import imgUrl3 from "/img/E1-1.png";
-import imgUrl4 from "/img/E2-1.png";
 import gifUrl from "/dashboard.gif";
 export default {
   data() {
@@ -12,56 +10,10 @@ export default {
       offsets: [],
       touchStartY: 0,
       gifUrl,
-      images: [imgUrl1, imgUrl2, imgUrl3, imgUrl4],
+      images: [imgUrl1, imgUrl2],
     };
   },
   methods: {
-    calculateSectionOffsets() {
-      setTimeout(() => {
-        let sections = document.getElementsByClassName("resume-section");
-        let length = sections.length;
-        for (let i = 0; i < length; i++) {
-          let sectionOffset = sections[i].offsetTop;
-          this.offsets.push(sectionOffset);
-        }
-      }, 200);
-    },
-    handleMouseWheel: function (e) {
-      if (e.wheelDelta < 30 && !this.inMove) {
-        this.moveUp();
-      } else if (e.wheelDelta > 30 && !this.inMove) {
-        this.moveDown();
-      }
-
-      e.preventDefault();
-      return false;
-    },
-    handleMouseWheelDOM: function (e) {
-      if (e.detail > 0 && !this.inMove) {
-        this.moveUp();
-      } else if (e.detail < 0 && !this.inMove) {
-        this.moveDown();
-      }
-
-      return false;
-    },
-    moveDown() {
-      this.inMove = true;
-      this.activeSection--;
-
-      if (this.activeSection < 0) this.activeSection = 0;
-
-      this.scrollToSection(this.activeSection, true);
-    },
-    moveUp() {
-      this.inMove = true;
-      this.activeSection++;
-
-      if (this.activeSection > this.offsets.length - 1)
-        this.activeSection = this.offsets.length - 1;
-
-      this.scrollToSection(this.activeSection, true);
-    },
     scrollToSection(id, force = false) {
       if (this.inMove && !force) return false;
 
@@ -76,20 +28,6 @@ export default {
         this.inMove = false;
       }, 600);
     },
-  },
-  created() {
-    this.calculateSectionOffsets();
-
-    window.addEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
-    window.addEventListener("mousewheel", this.handleMouseWheel, {
-      passive: false,
-    }); // Other browsers
-  },
-  destroyed() {
-    window.removeEventListener("mousewheel", this.handleMouseWheel, {
-      passive: false,
-    }); // Other browsers
-    window.removeEventListener("DOMMouseScroll", this.handleMouseWheelDOM); // Mozilla Firefox
   },
 };
 </script>
@@ -200,6 +138,8 @@ export default {
             <li class="list-inline-item"><i class="fab fa-markdown"></i></li>
             <li class="list-inline-item"><i class="fab fa-linux"></i></li>
             <li class="list-inline-item"><i class="fab fa-ubuntu"></i></li>
+            <li class="list-inline-item"><i class="fab fa-aws"></i></li>
+            <li class="list-inline-item"><i class="fab fa-google"></i></li>
             <li class="list-inline-item">
               <i class="fab fa-digital-ocean"></i>
             </li>
@@ -210,20 +150,11 @@ export default {
           </ul>
         </div>
       </section>
-      <hr class="m-0" />
       <!-- Experience-->
       <section class="resume-section" id="experience">
         <div class="resume-section-content">
           <div class="row align-items-center">
-            <div class="col-xl-8 d-none d-xxl-block mb-5">
-              <img
-                width="100%"
-                style="height: 80%; width: 80%; position: relative; z-index: -1"
-                :src="gifUrl + '?' + String(Date.now()).slice(0, -4)"
-                alt="Dashboard"
-              />
-            </div>
-            <div class="col-xxl-4 col-xl-12 mb-5">
+            <div class="col-xxl-12 col-xl-12 mb-5">
               <h2 class="mb-5">
                 <span class="text-primary">Career Summary</span>
               </h2>
@@ -231,16 +162,36 @@ export default {
                 class="d-flex flex-column flex-md-row justify-content-between mb-5"
               >
                 <div class="flex-grow-1">
+                  <h3 class="mb-0">Data Engineer</h3>
+                  <div class="subheading mb-3">
+                    <a
+                      href="https://www.oakra.com/th/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      >Oakra Software</a
+                    >
+                  </div>
+                  <span class="text-primary">July 2022 - Present</span>
+                  <p>
+                    Responsible for implementing and maintaining product and customer analytics.<br>
+                    Oversee customer onboardings and custom integrations with third-party softwares.
+                  </p>
+                </div>
+              </div>
+              <div
+                class="d-flex flex-column flex-md-row justify-content-between mb-5"
+              >
+                <div class="flex-grow-1">
                   <h3 class="mb-0">Project Lead - Data Analytics Platform</h3>
                   <div class="subheading mb-3">
                     <a
-                      href="https://jetcommerce.co.th/"
+                      href="https://jetcommerce.co.id/"
                       target="_blank"
                       rel="noopener noreferrer"
                       >Jet Commerce</a
                     >
                   </div>
-                  <span class="text-primary">October 2021 - Present</span>
+                  <span class="text-primary">October 2021 - June 2022</span>
                   <p>
                     Lead a team of developers, data engineers and analyst in
                     developing a data analytics platform.
@@ -254,7 +205,7 @@ export default {
                   <h3 class="mb-0">Data Analyst</h3>
                   <div class="subheading mb-3">
                     <a
-                      href="https://jetcommerce.co.th/"
+                      href="https://jetcommerce.co.id/"
                       target="_blank"
                       rel="noopener noreferrer"
                       >Jet Commerce</a
@@ -283,12 +234,11 @@ export default {
           </div>
         </div>
       </section>
-      <hr class="m-0" />
       <!-- Education-->
       <section class="resume-section" id="education">
         <div class="resume-section-content">
           <div class="row align-items-center">
-            <div class="col-xxl-8 col-xl-12">
+            <div class="col-xxl-6 col-xl-12">
               <h2 class="mb-5">
                 <span class="text-primary">Educational Training</span>
               </h2>
@@ -304,79 +254,67 @@ export default {
                 </div>
               </div>
               <div
-                class="d-flex flex-column flex-md-row justify-content-between"
+                class="d-flex flex-column flex-md-row justify-content-between mb-5"
               >
                 <div class="flex-grow-1">
                   <h3 class="mb-0">Harvard University, online</h3>
                   <div class="subheading mb-3">
                     Professional Certificate - Data Science
                   </div>
-                  <div class="mb-4">
-                    <span class="text-primary">2020</span>
+                  <div>
+                    <span class="text-primary">2020 &ensp;</span>
+                    <span class="text-primary">
+                      <a
+                        href="https://credentials.edx.org/credentials/4fcff18a002442658e86e9ed8e8d0a6e/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >certificate
+                      </a>
+                    </span>
                   </div>
-                  <div class="subheading mb-2">
-                    <a
-                      href="https://credentials.edx.org/credentials/4fcff18a002442658e86e9ed8e8d0a6e/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      >view credentials&nbsp;
-                      <i class="fa-solid fa-arrow-up-right-from-square"></i
-                    ></a>
+                </div>
+              </div>
+              <div
+                class="d-flex flex-column flex-md-row justify-content-between mb-5"
+              >
+                <div class="flex-grow-1">
+                  <h3 class="mb-0">UC San Diego, online</h3>
+                  <div class="subheading mb-3">
+                    MicroMasters Credential - Data Science
+                  </div>
+                  <div>
+                    <span class="text-primary">2023 &ensp;</span>
+                    <span class="text-primary">
+                      <a
+                        href="https://credentials.edx.org/credentials/935804e780b34fb2987a7056064fd340/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >certificate
+                      </a>
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-xxl-4 d-none d-xxl-block mb-5">
+            <div class="col-xxl-6 d-none d-xxl-block mb-5">
               <ul id="Frames">
                 <li class="Frame">
                   <img
-                    style="max-width: 25vw; image-rendering: crisp-edges"
-                    src="@/assets/degree.png"
+                    style="max-width: 30vw; image-rendering: crisp-edges"
+                    src="@/assets/dit_university.jpg"
                     alt="Degree"
                   />
-                </li>
-              </ul>
+                  </li>
+                </ul>
             </div>
           </div>
         </div>
       </section>
-      <hr class="m-0" />
       <!-- Awards-->
       <section class="resume-section" id="awards">
         <div class="resume-section-content">
           <h2 class="mb-5 text-primary">Certificates & Achievements</h2>
-          <span class="text-primary">
-            Data Science MicroMasters Program (2/4)
-          </span>
           <div class="col-12 mb-5">
-            <ul class="fa-ul mb-4">
-              <li>
-                <span class="fa-li"
-                  ><i class="fa-solid fa-award text-primary"></i
-                ></span>
-                Python for Data Science - UC San Diego - edX Verified - 2021 -
-                <a
-                  href="https://courses.edx.org/certificates/f0d013bd82c04fcfa00e3a18e17efce5"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Link</a
-                >
-              </li>
-              <li>
-                <span class="fa-li"
-                  ><i class="fa-solid fa-award text-primary"></i
-                ></span>
-
-                Probability and Statistics in Data Science using Python - UC San
-                Diego - edX Verified - 2021 -
-                <a
-                  href="https://courses.edx.org/certificates/3a3a446f16b044168aa75990cf04e98d"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Link</a
-                >
-              </li>
-            </ul>
             <span class="text-primary"> IT and Web </span>
             <ul class="fa-ul mb-0">
               <li>
